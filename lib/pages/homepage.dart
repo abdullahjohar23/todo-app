@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:todo_app/utils/todo_tile.dart';
+import 'package:todo_app/utils/dialog_box.dart';
 
 class HomePage extends StatefulWidget {
     const HomePage({super.key});
@@ -9,6 +10,9 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+    // text controller
+    final _controller = TextEditingController();
+
     List toDoList = [
         ['To Do App', true],
         ['Weather App', false],
@@ -20,6 +24,18 @@ class _HomePageState extends State<HomePage> {
         setState(() {
             toDoList[index][1] = !toDoList[index][1];
         });
+    }
+
+    // create a new task
+    void createNewTask() {
+        showDialog(
+            context: context,
+            builder: (context) {
+                return DialogBox(
+                    controller: _controller,
+                );
+            }
+        );
     }
 
     @override
@@ -47,6 +63,7 @@ class _HomePageState extends State<HomePage> {
 
             floatingActionButton: FloatingActionButton(
                 onPressed: () {
+                    createNewTask();
                 },
                 backgroundColor: Colors.red[800],
                 shape: const CircleBorder(),
