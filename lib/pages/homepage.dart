@@ -15,6 +15,13 @@ class _HomePageState extends State<HomePage> {
         ['Calculator App', false],
     ];
 
+    // checkbx tap function
+    void checkBoxCahnged(bool? value, int index) {
+        setState(() {
+            toDoList[index][1] = !toDoList[index][1];
+        });
+    }
+
     @override
     Widget build(BuildContext context) {
         return Scaffold(
@@ -32,10 +39,18 @@ class _HomePageState extends State<HomePage> {
                         taskName: toDoList[index][0],
                         taskCompleted: toDoList[index][1],
                         onChanged: (value) {
-                            // print('Checkbox is checked');
+                            checkBoxCahnged(value, index);
                         },
                     );
                 },
+            ),
+
+            floatingActionButton: FloatingActionButton(
+                onPressed: () {
+                },
+                backgroundColor: Colors.red[800],
+                shape: const CircleBorder(),
+                child: Icon(Icons.add, color: Colors.white,),
             ),
         );
     }
