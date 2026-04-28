@@ -9,6 +9,12 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+    List toDoList = [
+        ['To Do App', true],
+        ['Weather App', false],
+        ['Calculator App', false],
+    ];
+
     @override
     Widget build(BuildContext context) {
         return Scaffold(
@@ -19,24 +25,17 @@ class _HomePageState extends State<HomePage> {
             ),
             backgroundColor: Color(0xFFE8F5E9),
 
-            body: ListView(
-                children: [
-                    ToDoTile(
-                        taskName: 'Make a To Do App',
-                        taskCompleted: true,
+            body: ListView.builder(
+                itemCount: toDoList.length,
+                itemBuilder: (context, index) {
+                    return ToDoTile(
+                        taskName: toDoList[index][0],
+                        taskCompleted: toDoList[index][1],
                         onChanged: (value) {
                             // print('Checkbox is checked');
                         },
-                    ),
-
-                    ToDoTile(
-                        taskName: 'Make a Weather App',
-                        taskCompleted: false,
-                        onChanged: (value) {
-                            // print('Checkbox is checked');
-                        },
-                    ),
-                ],
+                    );
+                },
             ),
         );
     }
