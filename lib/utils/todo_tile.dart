@@ -3,9 +3,9 @@ import 'package:flutter/material.dart';
 class ToDoTile extends StatelessWidget {
     final String taskName;
     final bool taskCompleted;
-    Function(bool?)? onChanged;
+    final Function(bool?)? onChanged;
 
-    ToDoTile({
+    const ToDoTile({
         required this.taskName,
         required this.taskCompleted,
         required this.onChanged,
