@@ -82,7 +82,7 @@ class _HomePageState extends State<HomePage> {
             body: db.toDoList.isEmpty
             ? const Center(
                 child: Text(
-                    'No tasks yet! Add a task to get started.',
+                    'Add a task to get started 📝',
                     style: TextStyle(fontSize: 18, color: Colors.grey),
                 ),
             )
