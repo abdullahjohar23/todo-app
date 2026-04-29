@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:todo_app/data/database.dart';
 import 'package:todo_app/utils/todo_tile.dart';
 import 'package:todo_app/utils/dialog_box.dart';
-import 'package:hive_flutter/hive_flutter.dart';
 
 class HomePage extends StatefulWidget {
     const HomePage({super.key});
@@ -12,18 +11,13 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-    // reference the hive box
-    final _myBox = Hive.box('mybox');
     ToDoDatabase db = ToDoDatabase();
 
     @override
     void initState() {
-        // if this is the 1st time ever opening this app, then create default data
-        if (_myBox.get('TODOLIST') != null) {
-            db.loadData();
-        }
-
         super.initState();
+        db.loadData();
+        setState(() {});
     }
 
     // text controller
@@ -41,6 +35,7 @@ class _HomePageState extends State<HomePage> {
         setState(() {
             db.toDoList.add([_controller.text, false]);
         });
+        db.updateDataBase();
         _controller.clear();
         Navigator.of(context).pop();
     }
@@ -67,6 +62,7 @@ class _HomePageState extends State<HomePage> {
         setState(() {
             db.toDoList.removeAt(index);
         });
+        db.updateDataBase();
     }
 
     @override
