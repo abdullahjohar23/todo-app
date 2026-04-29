@@ -19,9 +19,7 @@ class _HomePageState extends State<HomePage> {
     @override
     void initState() {
         // if this is the 1st time ever opening this app, then create default data
-        if (_myBox.get('TODOLIST') == null) {
-            db.createInitialData();
-        } else {
+        if (_myBox.get('TODOLIST') != null) {
             db.loadData();
         }
 
@@ -81,7 +79,15 @@ class _HomePageState extends State<HomePage> {
             ),
             backgroundColor: Color(0xFFE8F5E9),
 
-            body: ListView.builder(
+            body: db.toDoList.isEmpty
+            ? const Center(
+                child: Text(
+                    'No tasks yet! Add a task to get started.',
+                    style: TextStyle(fontSize: 18, color: Colors.grey),
+                ),
+            )
+            :
+            ListView.builder(
                 itemCount: db.toDoList.length,
                 itemBuilder: (context, index) {
                     return ToDoTile(
