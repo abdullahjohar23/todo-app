@@ -21,8 +21,10 @@ class MyApp extends StatelessWidget {
             
             theme: ThemeData(
                 appBarTheme: AppBarTheme(
-                    backgroundColor: Colors.red[800], // this will be the color of the AppBar in all pages
+                    backgroundColor: const Color(0xFF4A6B5D), // this will be the color of the AppBar in all pages
                 ),
+
+                scaffoldBackgroundColor: const Color(0xFFF5F7F2), // this will be the background color of all pages
             ),
 
             home: HomePage(),

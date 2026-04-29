@@ -69,11 +69,10 @@ class _HomePageState extends State<HomePage> {
     Widget build(BuildContext context) {
         return Scaffold(
             appBar: AppBar(
-                title: const Text('To Do'),
+                title: const Text('To Do', style: TextStyle(color: Colors.white, fontSize: 24, fontWeight: FontWeight.w600),),
                 centerTitle: true,
                 elevation: 0,
             ),
-            backgroundColor: Color(0xFFE8F5E9),
 
             body: db.toDoList.isEmpty
             ? const Center(
@@ -101,7 +100,7 @@ class _HomePageState extends State<HomePage> {
                 onPressed: () {
                     createNewTask();
                 },
-                backgroundColor: Colors.red[800],
+                backgroundColor: Color(0xFF4A6B5D),
                 shape: const CircleBorder(),
                 child: Icon(Icons.add, color: Colors.white,),
             ),
